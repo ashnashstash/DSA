@@ -1,5 +1,6 @@
-public class LinkedList {
-  static Node head;
+public class MergeLinkedList {
+
+  Node head;
 
   void insert(int data) {
     Node newnode = new Node(data);
@@ -97,43 +98,29 @@ public class LinkedList {
     }
   }
 
-  void middleelement() {
-    Node temp = head;
-    int count = 0;
-    while (temp != null) {
-      count++;
-      temp = temp.next;
-    }
-    temp = head;
-    for (int i = 0; i < count / 2; i++) {
-      temp = temp.next;
-    }
-    System.out.println("Middle element : " + temp.data);
-  }
+  void mergeAlternate(MergeLinkedList list2) {
 
-  void sumofelements() {
-    int sum = 0;
-    Node temp = head;
-    while (temp != null) {
-      sum += temp.data;
-      temp = temp.next;
-    }
-    System.out.println("Sum of elements in the linked list : " + sum);
-  }
+        Node temp1 = this.head;
+        Node temp2 = list2.head;
 
-  void printevenelements() {
-    Node temp = head;
-    System.out.print("Even numbers in the linked list : ");
-    while (temp != null) {
-      if (temp.data % 2 == 0) {
-        System.out.print(temp.data + " ");
-        temp = temp.next;
+        while (temp1 != null && temp2 != null) {
 
-      } else {
-        temp = temp.next;
-      }
+            Node next1 = temp1.next;
+            Node next2 = temp2.next;
+
+            temp1.next = temp2;
+
+            if (next1 == null) {
+                break;
+            }
+
+            temp2.next = next1;
+
+            temp1 = next1;
+            temp2 = next2;
+        }
     }
-  }
+
 
   void display() {
     if (head == null) {
@@ -150,40 +137,23 @@ public class LinkedList {
   }
 
   public static void main(String[] args) {
-    LinkedList obj = new LinkedList();
+    MergeLinkedList obj = new MergeLinkedList();
     obj.insert(10);
-    obj.display();
     obj.insert(20);
-    obj.display();
     obj.insert(30);
-    obj.display();
     obj.insert(40);
+    obj.display();
+
+    System.out.println();
+
+    MergeLinkedList ob = new MergeLinkedList();
+    ob.insert(50);
+    ob.insert(60);
+    ob.insert(70);
+    ob.insert(80);
+    ob.display();
+
+    obj.mergeAlternate(ob);
     obj.display();
   }
 }
-
-/*
- * public class LinkedList {
- * static Node head;
- * 
- * public static void main(String[] args) {
- * Node newnode = new Node(10);
- * if (head == null) {
- * head = newnode;
- * }
- * Node temp = head;
- * Node newnode1 = new Node(20);
- * while (temp.next != null) {
- * temp = temp.next;
- * }
- * temp.next = newnode1;
- * Node temp1 = head;
- * while (temp1.next != null) {
- * System.out.print(temp.data + " -> ");
- * temp = temp.next;
- * }
- * }
- * }
- * 
- * raw implementation
- */
