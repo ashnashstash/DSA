@@ -1,5 +1,4 @@
 public class MergeLinkedList {
-
   Node head;
 
   void insert(int data) {
@@ -99,28 +98,20 @@ public class MergeLinkedList {
   }
 
   void mergeAlternate(MergeLinkedList list2) {
-
-        Node temp1 = this.head;
-        Node temp2 = list2.head;
-
-        while (temp1 != null && temp2 != null) {
-
-            Node next1 = temp1.next;
-            Node next2 = temp2.next;
-
-            temp1.next = temp2;
-
-            if (next1 == null) {
-                break;
-            }
-
-            temp2.next = next1;
-
-            temp1 = next1;
-            temp2 = next2;
-        }
+    Node temp1 = this.head;
+    Node temp2 = list2.head;
+    while (temp1 != null && temp2 != null) {
+      Node next1 = temp1.next;
+      Node next2 = temp2.next;
+      temp1.next = temp2;
+      if (next1 == null) {
+        break;
+      }
+      temp2.next = next1;
+      temp1 = next1;
+      temp2 = next2;
     }
-
+  }
 
   void display() {
     if (head == null) {
