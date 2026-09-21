@@ -116,7 +116,7 @@ public class LinkedList {
   void hareandtortoise() {
     Node hare = head;
     Node tortoise = head;
-    while (hare != null) {
+    while (hare != null && hare.next != null) {
       hare = hare.next.next;
       tortoise = tortoise.next;
     }
