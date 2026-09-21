@@ -29,7 +29,6 @@ public class LinkedList {
     Node newnode = new Node(data);
     if (head == null) {
       System.out.println("List is empty.");
-
     } else {
       Node temp = head;
       for (int i = 1; i < index - 1; i++) {
@@ -40,13 +39,15 @@ public class LinkedList {
     }
   }
 
-  void deletionststart() {
+  void deletionatstart() {
     if (head == null) {
       System.out.println("List is empty.");
 
     } else {
       Node temp = head;
-      head = temp.next;
+      // head = temp.next;
+      head = head.next;
+      temp.next = null;
     }
   }
 
@@ -77,6 +78,7 @@ public class LinkedList {
         temp = temp.next;
       }
       temp.next = temp.next.next;
+      temp.next.next = null;
     }
   }
 
@@ -109,6 +111,16 @@ public class LinkedList {
       temp = temp.next;
     }
     System.out.println("Middle element : " + temp.data);
+  }
+
+  void hareandtortoise() {
+    Node hare = head;
+    Node tortoise = head;
+    while (hare != null) {
+      hare = hare.next.next;
+      tortoise = tortoise.next;
+    }
+    System.out.println("Middle element : " + tortoise.data);
   }
 
   void sumofelements() {
@@ -159,6 +171,9 @@ public class LinkedList {
     obj.display();
     obj.insert(40);
     obj.display();
+    obj.insert(50);
+    obj.display();
+    obj.hareandtortoise();
   }
 }
 
