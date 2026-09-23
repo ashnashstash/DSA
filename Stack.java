@@ -1,59 +1,40 @@
 public class Stack {
-  static Node top;
+  static Node head;
 
   void push(int data) {
     Node newnode = new Node(data);
-    if (top == null) {
-      top = newnode;
-      return;
-    }
-    Node temp = top;
-    while (temp.next != null) {
-      temp = temp.next;
-    }
-    temp.next = newnode;
+    newnode.next = head;
+    head = newnode;
   }
 
   int pop() {
-    if (top == null) {
-      System.out.println("Stack is empty.");
+    Node temp = head;
+    if (head == null) {
+      System.out.println("Underflow");
       return -1;
     }
-    if (top.next == null) {
-      int data = top.data;
-      top = null;
-      return data;
-    }
-    Node temp = top;
-    while (temp.next.next != null) {
-      temp = temp.next;
-    }
-    int data = temp.next.data;
+    head = head.next;
     temp.next = null;
-    return data;
-  }
-
-  int peek() {
-    if (top == null) {
-      System.out.println("Stack is empty.");
-      return -1;
-    }
-    Node temp = top;
-    while (temp.next != null) {
-      temp = temp.next;
-    }
     return temp.data;
   }
 
-  void display() {
-    if (top == null) {
+  int peek() {
+    if (head == null) {
       System.out.println("Stack is empty.");
+      return -1;
+    }
+    return head.data;
+  }
+
+  void display() {
+    if (head == null) {
+      System.out.println("Stack is empty.");
+      return;
     } else {
-      Node temp1 = top;
-      System.out.println("Stack till now.");
-      while (temp1 != null) {
-        System.out.print(temp1.data + " -> ");
-        temp1 = temp1.next;
+      Node temp = head;
+      while (temp != null) {
+        System.out.println(temp.data);
+        temp = temp.next;
       }
       System.out.println();
     }
@@ -65,9 +46,12 @@ public class Stack {
     obj.push(20);
     obj.push(30);
     obj.display();
-    System.out.println("Top element: " + obj.peek());
+    System.out.println("Head element: " + obj.peek());
     System.out.println("Popped: " + obj.pop());
-    System.out.println("Top element after pop: " + obj.peek());
+    System.out.println("Head element after pop: " + obj.peek());
+    obj.push(40);
     obj.display();
+    System.out.println("Head element: " + obj.peek());
+
   }
 }
